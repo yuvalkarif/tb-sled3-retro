@@ -28,6 +28,7 @@ fonts:
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
 <div>
 
+- We kicked off with an AI-first workflow
 - Naive prompt failed - AI **hallucinated** 
 - Trial and Error led to a **Cursor Command** <code> /migrated-sled3</code>
 
@@ -157,7 +158,7 @@ fonts:
 ---
 
 # The Mature Workflow
- <span>Human were kept in the loop, but mostly at the PR step</span>
+ <span>AI became a part of every step in the process, from creating the PR until its merged</span>
   <div class="workflow-comments">
     <p class="section-label">Real feedback → Agent fixes</p>
     <div class="pr-comments">
@@ -217,7 +218,7 @@ class: challenges-slide
   <div class="col col-accent-blue">
     <div class="col-title">Quality & Stability</div>
     <ul>
-      <li>Zero flaky tests</li>
+      <li>Every sled passed flakyless</li>
       <li>Real bugs found</li>
 <li>Better Developer Experience</li>
     </ul>
@@ -227,7 +228,7 @@ class: challenges-slide
     <ul>
       <li>Removed redundant tests</li>
       <li>Found tests that <strong>never actually ran</strong> their assertions</li>
-      <li>Contributed to 3rd party</li>
+      <li>Contributed to other wix repositories</li>
     </ul>
   </div>
   <div class="col col-accent-purple">
