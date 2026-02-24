@@ -1,4 +1,15 @@
 {
   "name": "public-skill",
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "yarn@4.12.0",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@playwright/cli": "^0.1.1",
+    "@slidev/cli": "^51.4.3",
+    "@slidev/theme-default": "^0.25.0",
+    "global": "^4.4.0"
+  }
 }

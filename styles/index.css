@@ -1,0 +1,868 @@
+/* ── Geist Font Import ────────────────────────────── */
+@import url('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.css');
+@import url('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.css');
+
+/* ── Design Tokens (Geist-inspired) ──────────────── */
+:root {
+  --slidev-slide-container-background: #000000;
+  --slidev-theme-primary: #0070F3;
+  --color-accent: #0070F3;
+  --color-accent-dim: rgba(0, 112, 243, 0.12);
+  --color-accent-subtle: rgba(0, 112, 243, 0.07);
+  --color-bg: #000000;
+  --color-bg-surface: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-bg-card: rgba(255, 255, 255, 0.02);
+  --color-border: #1a1a1a;
+  --color-border-emphasis: #262626;
+  --color-border-dotted: #333333;
+  --color-text: #ededed;
+  --color-text-secondary: #b4b4b4;
+  --color-text-muted: #888888;
+  --color-text-dimmed: #555555;
+  --color-cyan: #79ffe1;
+  --color-violet: #7928ca;
+  --color-purple: #a855f7;
+  --color-pink: #f81ce5;
+  --color-amber: #f5a623;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-card: 8px;
+  --radius-sm: 6px;
+  --dot-color: rgba(255, 255, 255, 0.05);
+  --dot-spacing: 24px;
+  --dot-size: 1px;
+}
+
+/* ── Global Background — ensure outer containers match slides ── */
+html, body, #app, #page-root {
+  background: #000000 !important;
+}
+
+/* ── Slide Background with Dot Grid ──────────────── */
+.slidev-layout {
+  background:
+    radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size)),
+    #000000 !important;
+  background-size: var(--dot-spacing) var(--dot-spacing) !important;
+  color: var(--color-text);
+  font-family: 'Geist Sans', 'Geist', -apple-system, system-ui, sans-serif !important;
+}
+
+/* ── Typography ───────────────────────────────────── */
+.slidev-layout h1 {
+  font-family: 'Geist Sans', 'Geist', -apple-system, system-ui, sans-serif !important;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 2.4rem;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 16px;
+}
+
+.title-slide h1 {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.slidev-layout p,
+.slidev-layout li,
+.slidev-layout span {
+  font-family: 'Geist Sans', 'Geist', -apple-system, system-ui, sans-serif !important;
+}
+
+.slidev-layout ul:not(.ponder-list) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.slidev-layout ul:not(.ponder-list) > li {
+  position: relative;
+  padding-left: 1.4em;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.slidev-layout ul:not(.ponder-list) > li strong {
+  color: var(--color-text);
+}
+
+.slidev-layout ul:not(.ponder-list) > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-border-dotted);
+}
+
+/* ── Blockquote — modern Geist style ─────────────── */
+.slidev-layout blockquote {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.slidev-layout blockquote.hero-quote {
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  padding: 0;
+  margin: 0 0 12px 1.4em;
+  font-style: italic;
+}
+
+/* ── Code ─────────────────────────────────────────── */
+.slidev-layout code:not(pre code) {
+  font-family: 'Geist Mono', 'JetBrains Mono', monospace !important;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  font-size: 0.85em;
+  color: var(--color-text-secondary);
+}
+
+/* ── Links ────────────────────────────────────────── */
+.slidev-layout a {
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.slidev-layout a:hover {
+  opacity: 0.75;
+}
+
+/* ── Section Label (reusable) ────────────────────── */
+.section-label {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-family: 'Geist Mono', monospace !important;
+}
+
+/* ── Color Utilities ──────────────────────────────── */
+.blue { color: var(--color-accent); }
+.green { color: #00a86b; }
+.red { color: #e5484d; }
+.muted { color: var(--color-text-muted); }
+
+/* ── Title Slide ──────────────────────────────────── */
+.title-slide.slidev-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.title-slide.slidev-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.5;
+}
+
+.title-slide.slidev-layout::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(0, 112, 243, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.title-slide h1 {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 3.4rem;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+
+.title-slide p {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  margin-top: 12px;
+  font-family: 'Geist Mono', monospace !important;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Model Flow Cards ─────────────────────────────── */
+.model-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 12px 0 8px;
+}
+
+.model-flow .model-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 14px 18px;
+  text-align: center;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.model-flow .model-card:hover {
+  border-color: var(--color-border-emphasis);
+}
+
+.model-flow .model-card.breakthrough {
+  border-color: rgba(0, 112, 243, 0.25);
+  background: rgba(0, 112, 243, 0.03);
+  box-shadow:
+    0 0 0 1px rgba(0, 112, 243, 0.08),
+    0 0 40px rgba(0, 112, 243, 0.06);
+}
+
+.model-flow .model-card .model-name {
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.model-flow .model-card .model-desc {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+
+.model-flow .model-card .model-tag {
+  display: inline-block;
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.model-flow .model-card .model-tag.ok {
+  color: var(--color-text-muted);
+}
+
+.model-flow .model-card .model-tag.fast {
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  border-color: rgba(0, 112, 243, 0.15);
+}
+
+.model-flow .model-card .model-tag.breakthrough {
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+  border-color: rgba(0, 112, 243, 0.2);
+}
+
+.model-flow .model-arrow {
+  font-size: 1rem;
+  color: var(--color-text-dimmed);
+  padding: 0 14px;
+  flex-shrink: 0;
+  user-select: none;
+  font-family: 'Geist Mono', monospace !important;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Model Honorable Mentions ────────────────────── */
+.model-mentions {
+  text-align: center;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: var(--color-text-dimmed);
+  font-style: italic;
+}
+
+.model-mentions span {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-style: normal;
+  font-family: 'Geist Mono', monospace !important;
+}
+
+/* ── Mini Steps (used in model slide) ────────────── */
+.mini-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.mini-step {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 9px 16px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.mini-step:hover {
+  border-color: var(--color-border-emphasis);
+}
+
+.mini-step .idx {
+  font-family: 'Geist Mono', monospace !important;
+  margin-right: 12px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  min-width: 18px;
+  text-align: right;
+  opacity: 0.7;
+}
+
+.mini-step:nth-child(1) .idx,
+.mini-step:nth-child(2) .idx,
+.mini-step:nth-child(3) .idx,
+.mini-step:nth-child(4) .idx,
+.mini-step:nth-child(5) .idx,
+.mini-step:nth-child(6) .idx,
+.mini-step:nth-child(7) .idx,
+.mini-step:nth-child(8) .idx,
+.mini-step:nth-child(9) .idx {
+  color: var(--color-accent);
+}
+
+.muted-comment {
+  color: var(--color-text-muted);
+  margin-left: 8px;
+  font-size: 0.82em;
+  font-style: normal;
+  font-family: 'Geist Mono', monospace !important;
+}
+
+/* ── Flowchart (9-Phase) ─────────────────────────── */
+.flowchart {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.fc-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.fc-node {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  min-width: 0;
+}
+
+.fc-node .fc-num {
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.fc-node .fc-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.fc-node .fc-desc {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+/* ── Horizontal arrow ──────────────────────────── */
+.fc-arrow {
+  flex: 0 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.fc-arrow::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 8px;
+  top: 50%;
+  height: 0;
+  border-top: 1px solid var(--color-border-dotted);
+}
+
+.fc-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid var(--color-border-dotted);
+}
+
+/* ── Row wrap connector: 03→04, 06→07 ────────────── */
+.fc-wrap-arrow {
+  height: 32px;
+  margin: 4px 0;
+  position: relative;
+  /* Vertical lines: left goes down to next row, right goes up to previous row */
+  background-image:
+    linear-gradient(var(--color-border-dotted), var(--color-border-dotted)),
+    linear-gradient(var(--color-border-dotted), var(--color-border-dotted));
+  background-size: 1px 50%, 1px 50%;
+  background-position:
+    calc((100% - 64px) / 6) bottom,
+    calc(100% - (100% - 64px) / 6) top;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Horizontal line from center-of-first-block to center-of-last-block */
+.fc-wrap-arrow::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 0.5px);
+  left: calc((100% - 64px) / 6);
+  right: calc((100% - 64px) / 6);
+  height: 1px;
+  background: var(--color-border-dotted);
+}
+
+/* Down arrow at center of first block */
+.fc-wrap-arrow::after {
+  content: '';
+  position: absolute;
+  left: calc((100% - 64px) / 6 - 3px);
+  bottom: -1px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--color-border-dotted);
+}
+
+/* ── PR Comment Cards ─────────────────────────────── */
+.pr-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pr-comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--color-text-secondary) !important;
+  text-decoration: none !important;
+  transition: border-color 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+
+a.pr-comment {
+  color: var(--color-text-secondary) !important;
+}
+
+.pr-comment::after {
+  content: '\2197';
+  flex-shrink: 0;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--color-text-dimmed);
+  transition: color 0.2s var(--ease-out);
+}
+
+.pr-comment:hover {
+  border-color: var(--color-border-emphasis) !important;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pr-comment:hover::after {
+  color: var(--color-accent);
+}
+
+/* ── Flow Steps ───────────────────────────────────── */
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.flow .step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.flow .step strong {
+  color: var(--color-text);
+}
+
+.flow .step-num {
+  font-family: 'Geist Mono', monospace !important;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-subtle);
+  border: 1px solid rgba(0, 112, 243, 0.12);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+/* ── Trust Merged Layout ─────────────────────────── */
+.trust-merged {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.trust-evidence {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trust-evidence img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Workflow Merged Layout ──────────────────────── */
+.workflow-merged {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── Challenges Slide Layout ─────────────────────── */
+.challenges-slide.slidev-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ── Challenges Card Grid ────────────────────────── */
+.challenges-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 0;
+}
+
+.challenge-card {
+  flex: 0 1 300px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  transition: border-color 0.2s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-card:hover {
+  border-color: var(--color-border-emphasis);
+}
+
+.challenge-card .challenge-label {
+  font-family: 'Geist Mono', monospace !important;
+  color: #e5484d;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.challenge-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.challenge-resolution {
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+/* ── Scaling Up Layout v2 ─────────────────────────── */
+.scaling-slide-v2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.scaling-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  flex: 1;
+}
+
+.scaling-image-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scaling-image-v2 img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+}
+
+.scaling-caption {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  font-family: 'Geist Mono', monospace !important;
+  margin: 0;
+}
+
+/* ── Results Grid ─────────────────────────────────── */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.results-grid .col {
+  padding: 16px 18px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.results-grid .col-title {
+  font-family: 'Geist Mono', monospace !important;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border-emphasis);
+}
+
+.col-accent-blue .col-title { color: var(--color-accent); }
+.col-accent-cyan .col-title { color: var(--color-cyan); }
+.col-accent-purple .col-title { color: var(--color-purple); }
+
+.results-grid .col ul {
+  font-size: 0.82rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.results-grid .col li {
+  margin-bottom: 6px;
+  line-height: 1.55;
+  position: relative;
+  padding-left: 1em;
+  color: var(--color-text-secondary);
+}
+
+.results-grid .col li strong {
+  color: var(--color-text);
+}
+
+.results-grid .col li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-text-dimmed);
+}
+
+.results-grid .col.col-accent-blue li::before { background: var(--color-accent); }
+.results-grid .col.col-accent-cyan li::before { background: var(--color-cyan); }
+.results-grid .col.col-accent-purple li::before { background: var(--color-purple); }
+
+/* ── Big Metrics ──────────────────────────────────── */
+.metrics-row {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.metrics-row.compact {
+  padding: 12px 0 16px;
+}
+
+.metrics-row.compact .metric-item .number {
+  font-size: 2.8rem;
+}
+
+.metric-item {
+  text-align: center;
+}
+
+.metric-item .number {
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.metric-item .label {
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.metric-divider {
+  width: 1px;
+  background: var(--color-border);
+  align-self: stretch;
+}
+
+/* ── Ponder List (What's Next) ────────────────────── */
+.ponder-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0;
+  counter-reset: ponder;
+}
+
+.ponder-item {
+  counter-increment: ponder;
+  position: relative;
+  padding: 16px 18px 16px 52px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.ponder-item::before {
+  content: counter(ponder, decimal-leading-zero);
+  font-family: 'Geist Mono', monospace !important;
+  position: absolute;
+  left: 18px;
+  top: 17px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.ponder-item strong {
+  color: var(--color-text);
+}
+
+.ponder-item:hover {
+  border-color: var(--color-border-emphasis);
+}
+
+/* ── Images (general) ─────────────────────────────── */
+.slidev-layout img:not(.logo) {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  object-fit: contain;
+}
+
+/* ── Dashed horizontal divider utility ───────────── */
+.dashed-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--color-border-dotted);
+  margin: 16px 0;
+}
